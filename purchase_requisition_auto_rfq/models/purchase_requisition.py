@@ -57,7 +57,11 @@ class PurchaseRequisition(models.Model):
 
     def _create_purchase_order(self, seller_id):
         vals = {"partner_id": seller_id}
-        ctx = {"default_requisition_id": self.id}
+        if self.user_id:
+            uid = self.user_id.id
+        else:
+            uid = self.env.user.id
+        ctx = {"default_requisition_id": self.id, "default_user_id": uid}
         po = self.env["purchase.order"].with_context(**ctx).create(vals)
         po._onchange_requisition_id()
         return po

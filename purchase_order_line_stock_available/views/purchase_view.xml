@@ -9,7 +9,7 @@
                 expr="//field[@name='order_line']/tree//field[@name='qty_invoiced']"
                 position="after"
             >
-                <field name="virtual_available" optional="show" />
+                <field name="virtual_available" optional="show" string="Forecasted" />
             </xpath>
         </field>
     </record>
